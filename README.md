@@ -2,3 +2,8 @@
 
 At the beginning, use a nuxt3 module that I [established before](https://github.com/Megnate/my-nuxt3-default-module) to build the basic part. 
 
+# pnpm
+
+use with this code `pnpm install --shamefully-hoist`
+
+generate a file that name: `.npmrc` , write the code inside the file: `shamfully-hoist=true`
