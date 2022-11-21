@@ -3,7 +3,34 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/tailwindcss',
   ],
+  vite: {
+    optimizeDeps: {
+      include:
+        process.env.NODE_ENV === 'development'
+          ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
+          : [],
+    },
+  },
+  build: {
+    transpile:
+      process.env.NODE_ENV === 'production'
+        ? [
+            'naive-ui',
+            'vueuc',
+            '@css-render/vue3-ssr',
+            '@juggle/resize-observer',
+          ]
+        : ['@juggle/resize-observer'],
+  },
+  css: ['~/src/assets/tailwind.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   runtimeConfig: {
     // 所有API接口时会存在的密钥，仅在服务器端使用的私钥
     apiSecret: 'mei123',
@@ -17,7 +44,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   alias: {
-    '@': './src',
+    '@': './src/',
     '@/*': './src/*',
     '@c': './src/components',
     '@c/*': './src/components/*',
@@ -28,6 +55,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { charset: 'utf-8' },
+        { title: 'nuxt3-sidebar' },
       ],
       // script link style noscript 都可以在这里设置
     },
@@ -37,17 +65,17 @@ export default defineNuxtConfig({
     // 让在这个文件夹下的组件都可以自动注册，而不需要手动的import
     dirs: [
       {
-        path: './src/components',
+        path: './components',
         global: true,
       },
-      './src/components',
+      './components',
     ],
   },
   dir: {
     // 修改 nuxt 中默认的几个文件夹位置
-    layouts: './src/layouts',
-    middleware: './src/middleware',
-    pages: './src/pages',
+    layouts: './layouts',
+    middleware: './middleware',
+    pages: './pages',
   },
   appConfig: {
     // 一般在外部的app.config.ts文件中定义

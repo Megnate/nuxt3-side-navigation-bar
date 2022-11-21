@@ -1,16 +1,17 @@
 <script setup lang="ts" name="app">
-import Todo from '@c/todo/Todo.vue'
-
 const runtimeConfigKey = useRuntimeConfig()
 const appConfigValue = useAppConfig()
 // const { curTime } = useGetTime()
 </script>
 
 <template>
-  <div>
+  <div class="flex">
     <!-- <NuxtWelcome /> -->
-    {{ runtimeConfigKey }}
-    {{ appConfigValue }}
-    <Todo />
+    <div class="f">
+      {{ runtimeConfigKey }}
+    </div>
+    <div class="s h-20 w-20 bg-black">
+      {{ appConfigValue }}
+    </div>
   </div>
 </template>

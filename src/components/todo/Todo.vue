@@ -12,6 +12,9 @@ const { x, y } = useMouse()
       <input id="todo-text" type="text">
       <button>{{ x }}</button>
       <button>{{ y }}</button>
+      <n-button type="primary" size="medium">
+        {{ x }}
+      </n-button>
     </div>
     <div class="cor">
       {{ x }}, {{ y }}
